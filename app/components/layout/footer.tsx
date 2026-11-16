@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { connection } from "next/server";
 import Logo from "@/app/components/ui/logo";
 
 const footerGroups = [
@@ -30,7 +31,10 @@ const footerGroups = [
   },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  await connection();
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-slate-200 bg-white px-5 pt-16 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 pb-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -65,7 +69,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-slate-100 py-7 text-sm text-slate-400 sm:flex-row">
-        <p>© {new Date().getFullYear()} ATScV. All rights reserved.</p>
+        <p>© {currentYear} ATScV. All rights reserved.</p>
         <p>Built for your next career opportunity. ✦</p>
       </div>
     </footer>
