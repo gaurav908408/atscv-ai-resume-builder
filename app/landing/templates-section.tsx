@@ -1,6 +1,6 @@
 "use client";
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -212,12 +212,18 @@ export default function TemplatesSection() {
         </div>
 
         <Swiper
-          modules={[Navigation, Pagination]}
+          modules={[Autoplay, Navigation, Pagination]}
           navigation={{
             prevEl: ".template-swiper-prev",
             nextEl: ".template-swiper-next",
           }}
           pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          loop
           spaceBetween={20}
           slidesPerView={1.12}
           breakpoints={{
