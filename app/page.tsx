@@ -7,7 +7,6 @@ import HeroSection from "@/app/landing/hero-section";
 import StatsSection from "@/app/landing/stats-section";
 import TemplatesSection from "@/app/landing/templates-section";
 import TestimonialsSection from "@/app/landing/testimonials-section";
-import FeaturesSection from "@/app/landing/features-section";
 import CTASection from "@/app/landing/cta-section";
 
 const carouselFallback = (
@@ -45,8 +44,6 @@ export default function Home() {
       <Suspense fallback={carouselFallback}>
         <TestimonialsSection />
       </Suspense>
-
-      <FeaturesSection />
 
       <CTASection />
 

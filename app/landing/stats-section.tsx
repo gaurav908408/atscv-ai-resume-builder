@@ -78,19 +78,19 @@ export default function StatsSection() {
       ref={sectionRef}
       className="w-full bg-white py-16"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 text-center md:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-6 text-center min-[360px]:grid-cols-2 sm:gap-8 lg:grid-cols-4 lg:gap-6">
         {stats.map((stat, index) => (
           <div
             key={stat.label}
-            className="rounded-xl border border-transparent px-3 py-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-slate-200 hover:bg-slate-50 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none"
+            className="flex h-full min-w-0 flex-col items-center justify-center rounded-xl border border-transparent px-3 py-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-slate-200 hover:bg-slate-50 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none"
           >
-            <h2 className="text-4xl font-extrabold text-emerald-600 md:text-6xl">
+            <h2 className="w-full min-w-0 whitespace-nowrap text-3xl font-extrabold text-emerald-600 sm:text-4xl lg:text-5xl xl:text-6xl">
               {stat.prefix ?? ""}
               {counts[index]}
               {stat.suffix}
             </h2>
 
-            <p className="mt-3 text-base text-slate-500 md:text-xl">
+            <p className="mt-3 min-h-12 text-sm text-slate-500 sm:text-base lg:text-lg xl:text-xl">
               {stat.label}
             </p>
           </div>

@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useReducedMotion from "@/app/landing/use-reduced-motion";
 
@@ -75,6 +77,18 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const prefersReducedMotion = useReducedMotion();
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper || swiper.destroyed) return;
+
+    if (prefersReducedMotion) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
+  }, [prefersReducedMotion]);
 
   return (
     <section className="bg-white px-5 py-20 sm:px-8">
@@ -114,15 +128,15 @@ export default function TestimonialsSection() {
             nextEl: ".testimonial-swiper-next",
           }}
           pagination={{ clickable: true }}
-          autoplay={
-            prefersReducedMotion
-              ? false
-              : {
-                  delay: 2000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }
-          }
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+            if (prefersReducedMotion) swiper.autoplay.stop();
+          }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           loop
           spaceBetween={20}
           slidesPerView={1}

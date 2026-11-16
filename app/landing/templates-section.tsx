@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -182,6 +184,18 @@ function ResumePreview({
 
 export default function TemplatesSection() {
   const prefersReducedMotion = useReducedMotion();
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper || swiper.destroyed) return;
+
+    if (prefersReducedMotion) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
+  }, [prefersReducedMotion]);
 
   return (
     <section id="templates" className="bg-slate-50 px-5 py-20 sm:px-8">
@@ -221,15 +235,15 @@ export default function TemplatesSection() {
             nextEl: ".template-swiper-next",
           }}
           pagination={{ clickable: true }}
-          autoplay={
-            prefersReducedMotion
-              ? false
-              : {
-                  delay: 2000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }
-          }
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+            if (prefersReducedMotion) swiper.autoplay.stop();
+          }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           loop
           spaceBetween={20}
           slidesPerView={1.12}
