@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import useReducedMotion from "@/app/landing/use-reduced-motion";
 
 const templates = [
   {
@@ -180,6 +181,8 @@ function ResumePreview({
 }
 
 export default function TemplatesSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="templates" className="bg-slate-50 px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-7xl">
@@ -197,13 +200,13 @@ export default function TemplatesSection() {
           </div>
           <div className="hidden gap-3 sm:flex">
             <button
-              className="template-swiper-prev flex h-11 w-11 items-center justify-center border border-slate-300 bg-white text-xl text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700"
+              className="template-swiper-prev flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl text-slate-700 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
               aria-label="Previous templates"
             >
               ←
             </button>
             <button
-              className="template-swiper-next flex h-11 w-11 items-center justify-center border border-slate-300 bg-white text-xl text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700"
+              className="template-swiper-next flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl text-slate-700 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
               aria-label="Next templates"
             >
               →
@@ -218,11 +221,15 @@ export default function TemplatesSection() {
             nextEl: ".template-swiper-next",
           }}
           pagination={{ clickable: true }}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          autoplay={
+            prefersReducedMotion
+              ? false
+              : {
+                  delay: 2000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }
+          }
           loop
           spaceBetween={20}
           slidesPerView={1.12}
@@ -235,10 +242,12 @@ export default function TemplatesSection() {
         >
           {templates.map((template) => (
             <SwiperSlide key={template.name}>
-              <article className="h-full border border-slate-200 bg-white p-4 transition hover:-translate-y-1 hover:shadow-xl">
-                <div className="overflow-hidden border border-slate-200 bg-white p-3 shadow-sm">
-                  <div className="h-[340px] overflow-hidden bg-white sm:h-[360px]">
-                    <ResumePreview template={template} />
+              <article className="group h-full rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none">
+                <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-colors duration-300 ease-in-out group-hover:border-emerald-100 motion-reduce:transition-none">
+                  <div className="h-[340px] overflow-hidden rounded-lg bg-white sm:h-[360px]">
+                    <div className="h-full transition-transform duration-300 ease-in-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none">
+                      <ResumePreview template={template} />
+                    </div>
                   </div>
                 </div>
                 <div className="pt-4">

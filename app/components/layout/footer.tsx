@@ -53,7 +53,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="transition hover:text-emerald-600"
+                  className="rounded-sm transition-colors duration-300 ease-in-out hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
                 >
                   {link.label}
                 </Link>

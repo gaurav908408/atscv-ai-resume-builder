@@ -20,7 +20,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 transition hover:text-emerald-600"
+              className="rounded-md text-sm font-medium text-slate-600 transition-colors duration-300 ease-in-out hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               {link.label}
             </Link>
@@ -30,14 +30,14 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/login"
-            className="px-4 py-3 text-sm font-semibold hover:text-emerald-600"
+            className="rounded-lg px-4 py-3 text-sm font-semibold transition-colors duration-300 ease-in-out hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
           >
             Log in
           </Link>
 
           <Link
             href="/register"
-            className="bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            className="rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
           >
             Sign up free →
           </Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-2xl md:hidden"
+          className="rounded-lg p-2 text-2xl transition-colors duration-300 ease-in-out hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none md:hidden"
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
         >
@@ -54,26 +54,29 @@ export default function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-slate-200 bg-white p-5 md:hidden">
+        <div className="rounded-b-xl border-t border-slate-200 bg-white p-5 shadow-lg md:hidden">
           <div className="flex flex-col gap-5">
             {navigationLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-slate-700"
+                className="rounded-md text-sm font-medium text-slate-700 transition-colors duration-300 ease-in-out hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 {link.label}
               </Link>
             ))}
 
-            <Link href="/login" className="text-sm font-medium">
+            <Link
+              href="/login"
+              className="rounded-md text-sm font-medium transition-colors duration-300 ease-in-out hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+            >
               Log in
             </Link>
 
             <Link
               href="/register"
-              className="bg-emerald-600 p-3 text-center text-white"
+              className="rounded-xl bg-emerald-600 p-3 text-center text-white transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
             >
               Sign up free
             </Link>

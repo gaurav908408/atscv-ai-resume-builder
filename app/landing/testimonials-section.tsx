@@ -2,6 +2,7 @@
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import useReducedMotion from "@/app/landing/use-reduced-motion";
 
 const testimonials = [
   {
@@ -73,6 +74,8 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section className="bg-white px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-7xl">
@@ -90,13 +93,13 @@ export default function TestimonialsSection() {
           </div>
           <div className="hidden gap-3 sm:flex">
             <button
-              className="testimonial-swiper-prev flex h-11 w-11 items-center justify-center border border-slate-300 bg-white text-xl text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700"
+              className="testimonial-swiper-prev flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl text-slate-700 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
               aria-label="Previous comments"
             >
               ←
             </button>
             <button
-              className="testimonial-swiper-next flex h-11 w-11 items-center justify-center border border-slate-300 bg-white text-xl text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700"
+              className="testimonial-swiper-next flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl text-slate-700 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
               aria-label="Next comments"
             >
               →
@@ -111,11 +114,15 @@ export default function TestimonialsSection() {
             nextEl: ".testimonial-swiper-next",
           }}
           pagination={{ clickable: true }}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          autoplay={
+            prefersReducedMotion
+              ? false
+              : {
+                  delay: 2000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }
+          }
           loop
           spaceBetween={20}
           slidesPerView={1}
@@ -127,7 +134,7 @@ export default function TestimonialsSection() {
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.name}>
-              <article className="h-full border border-slate-200 bg-slate-50 p-7">
+              <article className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-7 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-lg motion-reduce:transform-none motion-reduce:transition-none">
                 <p className="text-2xl tracking-widest text-amber-400" aria-label="5 out of 5 stars">
                   ★★★★★
                 </p>

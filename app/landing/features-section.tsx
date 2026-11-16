@@ -20,7 +20,7 @@ export default function FeaturesSection() {
     <>
       <button
         onClick={() => setVisible(true)}
-        className="text-left text-sm text-slate-500 transition hover:text-emerald-600"
+        className="rounded-lg px-2 py-1 text-left text-sm text-slate-500 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
       >
         Pricing – Free
       </button>
@@ -28,7 +28,7 @@ export default function FeaturesSection() {
       {visible && (
         <div
           role="status"
-          className="fixed bottom-5 right-5 z-[60] flex max-w-sm items-center gap-3 border border-emerald-200 bg-white p-4 shadow-xl"
+          className="fixed bottom-5 right-5 z-[60] flex max-w-sm items-center gap-3 rounded-xl border border-emerald-200 bg-white p-4 shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-300 hover:shadow-2xl motion-reduce:transform-none motion-reduce:transition-none"
         >
           <span className="text-xl text-emerald-600">✓</span>
 
@@ -38,7 +38,7 @@ export default function FeaturesSection() {
 
           <button
             onClick={() => setVisible(false)}
-            className="text-xl text-slate-400"
+            className="rounded-md px-1 text-xl text-slate-400 transition-colors duration-300 ease-in-out hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
             aria-label="Close notice"
           >
             ×

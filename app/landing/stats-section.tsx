@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import useReducedMotion from "@/app/landing/use-reduced-motion";
 
 const stats = [
   { value: 98, suffix: "%", label: "ATS Pass Rate" },
@@ -14,6 +15,7 @@ export default function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [startAnimation, setStartAnimation] = useState(false);
   const [counts, setCounts] = useState([0, 0, 0, 0]);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -36,6 +38,10 @@ export default function StatsSection() {
 
   useEffect(() => {
     if (!startAnimation) return;
+    if (prefersReducedMotion) {
+      setCounts(stats.map((stat) => stat.value));
+      return;
+    }
 
     const duration = 2000;
     const startTime = performance.now();
@@ -65,7 +71,7 @@ export default function StatsSection() {
     animationFrame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [startAnimation]);
+  }, [prefersReducedMotion, startAnimation]);
 
   return (
     <section
@@ -74,7 +80,10 @@ export default function StatsSection() {
     >
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 text-center md:grid-cols-4">
         {stats.map((stat, index) => (
-          <div key={stat.label}>
+          <div
+            key={stat.label}
+            className="rounded-xl border border-transparent px-3 py-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-slate-200 hover:bg-slate-50 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none"
+          >
             <h2 className="text-4xl font-extrabold text-emerald-600 md:text-6xl">
               {stat.prefix ?? ""}
               {counts[index]}
