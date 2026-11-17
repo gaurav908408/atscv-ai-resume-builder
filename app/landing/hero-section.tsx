@@ -5,30 +5,30 @@ const resumeSkills = ["React", "JavaScript", "Next.js", "Node.js", "SQL"];
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-5 py-20 sm:px-8 lg:py-28">
+    <section className="relative overflow-hidden px-5 py-14 sm:px-8 sm:py-16 lg:py-8 xl:py-12">
       <div className="pointer-events-none absolute -right-40 top-0 h-96 w-96 rounded-full bg-emerald-200/40 blur-[110px]" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] xl:gap-14">
 
-        <div>
+        <div className="min-w-0">
           <span className="inline-flex rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700">
             ✦ The Next-Gen AI Resume Platform
           </span>
 
-          <h1 className="mt-7 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 max-w-2xl text-[clamp(2.5rem,3.6vw,4.5rem)] font-extrabold leading-[1.05] tracking-tight">
             Get Hired Faster with{" "}
             <span className="text-emerald-600">
               AI-Powered Precision.
             </span>
           </h1>
 
-          <p className="mt-7 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-8 text-slate-600 sm:text-lg lg:mt-4">
             Craft professional, ATS-friendly resumes in minutes.
             Optimize your existing resume, analyze job compatibility,
             and take the next step in your career with confidence.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap lg:mt-6">
             <Link
               href="/builder"
               className="rounded-xl bg-emerald-600 px-7 py-4 text-center font-bold text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
@@ -44,7 +44,7 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          <div className="mt-9 flex flex-wrap gap-5 text-sm text-slate-500">
+          <div className="mt-7 flex flex-wrap gap-5 text-sm text-slate-500 lg:mt-6">
             <span>✓ 100% Free</span>
             <span>✓ ATS Friendly</span>
             <span>✓ AI Powered</span>
@@ -52,8 +52,8 @@ export default function HeroSection() {
         </div>
 
         {/* Resume Preview */}
-        <div className="relative mx-auto w-full max-w-lg">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-200 hover:shadow-2xl motion-reduce:transform-none motion-reduce:transition-none sm:p-9">
+        <div className="relative mx-auto w-full min-w-0 max-w-lg">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-200 hover:shadow-2xl motion-reduce:transform-none motion-reduce:transition-none sm:p-8 lg:p-6">
 
             <div className="flex items-center justify-between border-b border-slate-200 pb-5">
               <div>
